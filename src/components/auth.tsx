@@ -14,7 +14,7 @@ export const Auth: React.FC = () => {
   const handleLogin = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      window.location.href = "builder.html";
+      window.location.href = "./";
     } catch (err: unknown) {
       alert("Login failed: " + (err instanceof Error ? err.message : "Unknown error"));
     }
@@ -23,7 +23,7 @@ export const Auth: React.FC = () => {
   const handleSignup = async () => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      window.location.href = "builder.html";
+      window.location.href = "./";
     } catch (err: unknown) {
       alert("Signup failed: " + (err instanceof Error ? err.message : "Unknown error"));
     }
@@ -41,20 +41,20 @@ export const Auth: React.FC = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-bold text-center mb-6">Login or Sign Up</h2>
+        <h2 className="text-2xl text-black font-bold text-center mb-6">Login or Sign Up</h2>
         <input
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full p-3 mb-4 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full p-3 mb-4 border text-amber-700 rounded focus:outline-none ring-1 ring-gray-600 focus:ring-2 focus:ring-blue-500"
         />
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full p-3 mb-4 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full p-3 mb-4 border text-amber-800 rounded focus:outline-none ring-1 ring-gray-600 focus:ring-2 focus:ring-blue-500"
         />
         <div className="flex justify-between mb-4">
           <button
