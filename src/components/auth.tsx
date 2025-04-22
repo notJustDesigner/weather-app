@@ -32,7 +32,7 @@ export const Auth: React.FC = () => {
   const handleGoogleSignIn = async () => {
     try {
       await signInWithPopup(auth, provider);
-      window.location.href = "builder.html";
+      window.location.href = "./";
     } catch (err: unknown) {
       alert("Google sign-in failed: " + (err instanceof Error ? err.message : "Unknown error"));
     }

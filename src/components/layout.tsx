@@ -4,6 +4,7 @@ import { Header } from "./header";
 import { Auth } from "./auth.js"; // Assuming Auth.jsx is in the same directory
 import { auth, onAuthStateChanged } from "../firebase";
 import type { User } from "firebase/auth";
+import WeatherSkeleton from "./loading-skeleton";
 
 export function Layout({ children }: PropsWithChildren) {
   const [user, setUser] = useState<User | null>(null);
@@ -19,7 +20,7 @@ export function Layout({ children }: PropsWithChildren) {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>; // Optional: Add a loading state
+    return <div><WeatherSkeleton /></div>; // loading state
   }
 
   if (!user) {
