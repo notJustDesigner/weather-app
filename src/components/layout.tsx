@@ -1,9 +1,33 @@
 import type { PropsWithChildren } from "react";
+import { useEffect, useState } from "react";
 import { Header } from "./header";
+import { Auth } from "./auth.js"; // Assuming Auth.jsx is in the same directory
+import { auth, onAuthStateChanged } from "../firebase";
+import type { User } from "firebase/auth";
 
 export function Layout({ children }: PropsWithChildren) {
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>; // Optional: Add a loading state
+  }
+
+  if (!user) {
+    return <Auth />;
+  }
+
   return (
-    <div className=" bg-gradient-to-br from-background to-muted">
+    <div className="bg-gradient-to-br from-background to-muted">
       <Header />
       <main className="min-h-screen container mx-auto px-4 py-8">
         {children}
